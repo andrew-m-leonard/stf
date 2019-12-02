@@ -490,8 +490,8 @@ public class StfCoreExtension implements StfExtension {
 	 * @param toCharset is the character set to convert to.
 	 * @throws StfException if there is an internal error.
 	 */
-	public void doIconvFile(String comment, String fromFullPath, String fromCharset, String toFullPath, String toCharset) throws StfException {
-		generator.startNewCommand(comment, "iconvFile", "Convert file from:", fromFullPath, ", charset:", fromCharset, "to: ", toFullPath, ", charset:", toCharset);
+	public void doIconvFile(String comment, String fromFullPath, String fromCharset, String toCharset) throws StfException {
+		generator.startNewCommand(comment, "iconvFile", "Convert file:", fromFullPath, ", fromCharset:", fromCharset, ", toCharset:", toCharset);
 
 		CommandDetails command;
 		String mnemonic = "ICNV";
