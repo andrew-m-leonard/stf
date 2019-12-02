@@ -494,7 +494,7 @@ public class StfCoreExtension implements StfExtension {
 		generator.startNewCommand(comment, "iconvFile", "Convert file", "File:", fullPath, "from charset:", fromCharset, "to charset:", toCharset);
 
 		CommandDetails command;
-		String mnemonic = "ICONV";
+		String mnemonic = "ICNV";
 		command = generator.buildCommand(mnemonic, 1, comment, "iconv", "-f", fromCharset, "-t", toCharset, fullPath);
 
 		// Generate perl to run iconv
