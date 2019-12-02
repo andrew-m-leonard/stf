@@ -482,6 +482,29 @@ public class StfCoreExtension implements StfExtension {
 
 
 	/**
+	 * Generates perl code to run iconv against a file.
+	 * 
+	 * @param comment is a short summary describing why the test creating a new file.
+	 * @param file is the file to be converted.
+	 * @param fromCharset is the character set to convert from.
+	 * @param toCharset is the character set to convert to.
+	 * @throws StfException if there is an internal error.
+	 */
+	public void doIconvFile(String comment, String fullPath, String fromCharset, String toCharset) throws StfException {
+		generator.startNewCommand(comment, "iconvFile", "Convert file", "File:", fullPath, "from charset:", fromCharset, "to charset:", toCharset);
+
+		CommandDetails command;
+		String mnemonic = "ICONV";
+		command = generator.buildCommand(mnemonic, 1, comment, "iconv", "-f", fromCharset, "-t", toCharset, fullPath);
+
+		// Generate perl to run iconv
+		SystemProcessDefinition processDefinition = createSystemProcessDefinition()
+				.setProcessName(command.getExecutableName())
+				.addArg(command.getArgs());
+		extensionBase.runForegroundProcess(comment, mnemonic, ECHO_ON, ExpectedOutcome.cleanRun().within("15m"), processDefinition);
+	}
+
+	/**
 	 * Generates perl code so that tests can echo the contents of a file.
 	 * If the file cannot be opened then all running processes are killed and the test fails.
 	 * @param comment is a short summary describing why the test creating a new file.
