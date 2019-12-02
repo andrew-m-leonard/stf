@@ -490,12 +490,20 @@ public class StfCoreExtension implements StfExtension {
 	 * @param toCharset is the character set to convert to.
 	 * @throws StfException if there is an internal error.
 	 */
-	public void doIconvFile(String comment, String fullPath, String fromCharset, String toCharset) throws StfException {
-		generator.startNewCommand(comment, "iconvFile", "Convert file", "File:", fullPath, "from charset:", fromCharset, "to charset:", toCharset);
+	public void doIconvFile(String comment, String fromFullPath, String fromCharset, String toFullPath, String toCharset) throws StfException {
+		generator.startNewCommand(comment, "iconvFile", "Convert file from:", fromFullPath, ", charset:", fromCharset, "to: ", toFullPath, ", charset:", toCharset);
 
 		CommandDetails command;
 		String mnemonic = "ICNV";
-		command = generator.buildCommand(mnemonic, 1, comment, "iconv", "-f", fromCharset, "-t", toCharset, fullPath);
+		FileRef fromFile = environmentCore.createFileRef(fromFullPath);
+		DirectoryRef tempdir  = environmentCore.createDirectoryRef(System.getProperty("java.io.tempdir"));
+
+		FileRef tempfile = doCp("Copy " + fromFullPath + " to " + tempdir, fromFile, tempdir);
+		System.out.println("doCp returned:");
+		System.out.println("tempfile:" + tempfile);
+		System.out.println("tempfile.getspec():" + tempfile.getSpec());
+		
+		command = generator.buildCommand(mnemonic, 1, comment, "iconv", "-f", fromCharset, "-t", toCharset, tempfile.getSpec(), ">" + fromFullPath );
 
 		// Generate perl to run iconv
 		SystemProcessDefinition processDefinition = createSystemProcessDefinition()
