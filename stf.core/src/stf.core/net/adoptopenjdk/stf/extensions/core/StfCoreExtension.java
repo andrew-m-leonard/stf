@@ -496,7 +496,7 @@ public class StfCoreExtension implements StfExtension {
 		CommandDetails command;
 		String mnemonic = "ICNV";
 		FileRef fromFile = environmentCore.createFileRef(fromFullPath);
-		DirectoryRef tempdir  = environmentCore.createDirectoryRef(System.getProperty("java.io.tempdir"));
+		DirectoryRef tempdir  = environmentCore.createDirectoryRef(System.getProperty("java.io.tmpdir"));
 
 		FileRef tempfile = doCp("Copy " + fromFullPath + " to " + tempdir, fromFile, tempdir);
 		System.out.println("doCp returned:");
