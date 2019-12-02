@@ -491,7 +491,7 @@ public class StfCoreExtension implements StfExtension {
 	 * @throws StfException if there is an internal error.
 	 */
 	public void doIconvFile(String comment, String fromFullPath, String fromCharset, String toCharset) throws StfException {
-		generator.startNewCommand(comment, "iconvFile", "Convert file:", fromFullPath, ", fromCharset:", fromCharset, ", toCharset:", toCharset);
+		generator.startNewCommand(comment, "iconvFile", "Convert file:", "File:", fromFullPath, ", fromCharset:", fromCharset, ", toCharset:", toCharset);
 
 		CommandDetails command;
 		String mnemonic = "ICNV";
