@@ -404,6 +404,9 @@ limitations under the License.
 <exec executable="which">
    <arg value="curl"/>
 </exec>
+<exec executable="which">
+   <arg value="java"/>
+</exec>
 			<exec executable="${download-tool}">
 				<arg value="${download-tool-security-options}"/>
 				<arg value="${download-tool-srcfile-option}"/>
