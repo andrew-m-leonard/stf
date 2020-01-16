@@ -400,7 +400,10 @@ limitations under the License.
 			<echo message="Download tool: ${download-tool}"/>
 			<fail unless="downloadtool_available" message="Cannot find ${download-tool} on PATH, needed to download @{srcurl}. Either install ${download-tool} or add it to PATH and retry.  If you are running the build from the Ant view in Eclipse, add ${download-tool} to your PATH before starting Eclipse."/>
 			<mkdir dir="@{destdir}"/>
-<echo message="==>>> ${download-tool} ${download-tool-security-options} ${download-tool-srcfile-option} @{destdir}/@{destfile} @{srcurl}"/>
+<echo message="======>>> ${download-tool} ${download-tool-security-options} ${download-tool-srcfile-option} @{destdir}/@{destfile} @{srcurl}"/>
+<exec executable="which">
+   <arg value="curl"/>
+</exec>
 			<exec executable="${download-tool}">
 				<arg value="${download-tool-security-options}"/>
 				<arg value="${download-tool-srcfile-option}"/>
