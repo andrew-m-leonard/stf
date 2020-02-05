@@ -14,7 +14,7 @@ limitations under the License.
 
 <project name="stf.core" default="build">
 
-	<echo message="Executing stf.core/build.xml"/>
+	<echo message="EEEEEEEEExecuting stf.core/build.xml"/>
 
 	<!-- Set default for source_root.  -->
 	<property name="source_root" location=".."/>
@@ -82,7 +82,6 @@ limitations under the License.
 			   debug="true"
 			   fork="true"
 			   classpathref="project.class.path"
-			    encoding="${src-encoding}"
 			   includeantruntime="false"
 			   failonerror="true">
 			<include name="**/*.java"/>
@@ -93,7 +92,6 @@ limitations under the License.
 			   debug="true"
 			   fork="true"
 			   classpathref="project.class.path"
-			   encoding="${src-encoding}"
 			   includeantruntime="false"
 			   failonerror="true">
 			<include name="**/*.java"/>
